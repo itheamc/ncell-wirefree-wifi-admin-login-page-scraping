@@ -43,7 +43,6 @@ class NcellRouterKotlin {
             div.click()
         } catch (e: Exception) {
             println(e.message)
-//            driver.quit();
         }
     }
 }

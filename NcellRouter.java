@@ -49,7 +49,6 @@ public class NcellRouter {
             div.click();
         } catch (Exception e){
             System.out.println(e.getMessage());
-//            driver.quit();
         }
     }
 }
