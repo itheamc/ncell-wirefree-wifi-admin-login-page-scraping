@@ -16,8 +16,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 public class NcellRouter {
 
     public static void main(String[] args) {
+
+        // Specify the path of the WebDriver (Chrome, Firefox etc.) you are going to use
+        // Here i have used ChromeDriver and specify the path C:/Users/User/Downloads/chromedriver_win32/chromedriver.exe
         ChromeDriverService chromeDriverService = new ChromeDriverService.Builder().usingChromeDriverExecutable(new File("C:/Users/User/Downloads/chromedriver_win32/chromedriver.exe")).build();
         WebDriver driver = new ChromeDriver(chromeDriverService);
+
+        // Creating new instance of WebDriverWait variable to wait for 10 seconds
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
         try {
             driver.get("http://192.168.0.1");
@@ -33,20 +38,25 @@ public class NcellRouter {
 
             // enter username and password
             username.clear();
-            username.sendKeys("admin");
-            Thread.sleep(2000);
+            username.sendKeys("admin");       // Enter your username here
+            Thread.sleep(1000);
             password.clear();
-            password.sendKeys("admin");
+            password.sendKeys("admin");      // Enter your password here
 
             Thread.sleep(1000);
             // Targeting the button element to login
             WebElement button = wait.until(elementToBeClickable((By.id("btnLogin"))));
             button.click();
 
-            Thread.sleep(4000);
-            // targeting to setting div to see the data usage
+            Thread.sleep(2000);
+            // targeting to setting div to see the connected device
             WebElement div = wait.until(elementToBeClickable(By.cssSelector("a[data-trans='device_setting']")));
             div.click();
+
+            // Targeting to the data usage setting to see data usage
+            Thread.sleep(1000);
+            WebElement dataUsageSetting = wait.until(elementToBeClickable(By.cssSelector("a[data-trans='statistics_settings']")));
+            dataUsageSetting.click();
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
